@@ -58,7 +58,7 @@ TEST(Test_Darknet, read_tiny_yolo_voc)
     cv::dnn::Net net = readNetFromDarknet(_tf("tiny-yolo-voc.cfg"));
     ASSERT_FALSE(net.empty());
 }
-#ifdef BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
 TEST(Test_Darknet, read_yolo_voc)
 {
     cv::dnn::Net net = cv::dnnlegacy::readNetFromDarknet(_tf("yolo-voc.cfg"));
@@ -1154,5 +1154,4 @@ TEST_P(Test_Darknet_layers, sam)
 }
 
 INSTANTIATE_TEST_CASE_P(/**/, Test_Darknet_layers, dnnBackendsAndTargets());
-#endif
 }} // namespace
