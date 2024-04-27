@@ -69,7 +69,7 @@
 #ifndef __OPENCV_DNN_DARKNET_IO_HPP__
 #define __OPENCV_DNN_DARKNET_IO_HPP__
 
-#include <opencv2/dnn/dnn.hpp>
+#include <opencv2/dnnlegacy/dnnlegacy.hpp>
 
 namespace cv {
     namespace dnnlegacy {

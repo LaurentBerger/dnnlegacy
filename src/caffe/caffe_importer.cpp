@@ -53,9 +53,8 @@
 #include "caffe_io.hpp"
 #endif
 #include <opencv2/core.hpp>
-#include <opencv2/dnn.hpp>
+#include <opencv2/dnnlegacy/dnnlegacy.hpp>
 #include <opencv2/core/utils/fp_control_utils.hpp>
-#include <opencv2/core/utils/trace.hpp>
 
 namespace cv {
 namespace dnnlegacy {

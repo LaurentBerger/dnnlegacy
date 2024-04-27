@@ -85,9 +85,6 @@
 #include <opencv2/core/opencl/ocl_defs.hpp>
 
 #include <opencv2/core/utils/trace.hpp>
-#include <opencv2/dnn.hpp>
-#include <opencv2/dnn/all_layers.hpp>
-#include <opencv2/dnn/shape_utils.hpp>
 #include <opencv2/dnnlegacy.hpp>
 
 //#include "dnn_common.hpp"

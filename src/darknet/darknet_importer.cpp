@@ -40,6 +40,7 @@
 // the use of this software, even if advised of the possibility of such damage.
 //
 //M*/
+#include "../precomp.hpp"
 
 
 #include <iostream>
@@ -48,19 +49,13 @@
 #include <vector>
 #include <map>
 
-
-#include <opencv2/core.hpp>
-#include <opencv2/dnn.hpp>
-#include <opencv2/core/utils/fp_control_utils.hpp>
-#include <opencv2/core/utils/trace.hpp>
-
 #include "darknet_io.hpp"
 
+#include <opencv2/core/utils/fp_control_utils.hpp>
 
 namespace cv {
 namespace dnnlegacy {
-CV__DNN_INLINE_NS_BEGIN
-
+using namespace dnn;
 namespace
 {
 
@@ -188,17 +183,17 @@ public:
     }
 };
 
-static cv::dnn::Net readNetFromDarknet(std::istream &cfgFile, std::istream &darknetModel)
+static Net readNetFromDarknet(std::istream &cfgFile, std::istream &darknetModel)
 {
-    cv::dnn::Net net;
+    Net net;
     DarknetImporter darknetImporter(cfgFile, darknetModel);
     darknetImporter.populateNet(net);
     return net;
 }
 
-static cv::dnn::Net readNetFromDarknet(std::istream &cfgFile)
+static Net readNetFromDarknet(std::istream &cfgFile)
 {
-    cv::dnn::Net net;
+    Net net;
     DarknetImporter darknetImporter(cfgFile);
     darknetImporter.populateNet(net);
     return net;
@@ -206,7 +201,7 @@ static cv::dnn::Net readNetFromDarknet(std::istream &cfgFile)
 
 }
 
-cv::dnn::Net readNetFromDarknet(const String &cfgFile, const String &darknetModel /*= String()*/)
+Net readNetFromDarknet(const String &cfgFile, const String &darknetModel /*= String()*/)
 {
     std::ifstream cfgStream(cfgFile.c_str());
     if (!cfgStream.is_open())
@@ -235,7 +230,7 @@ struct BufferStream : public std::streambuf
     }
 };
 
-cv::dnn::Net readNetFromDarknet(const char *bufferCfg, size_t lenCfg, const char *bufferModel, size_t lenModel)
+Net readNetFromDarknet(const char *bufferCfg, size_t lenCfg, const char *bufferModel, size_t lenModel)
 {
     BufferStream cfgBufferStream(bufferCfg, lenCfg);
     std::istream cfgStream(&cfgBufferStream);
@@ -249,7 +244,7 @@ cv::dnn::Net readNetFromDarknet(const char *bufferCfg, size_t lenCfg, const char
         return readNetFromDarknet(cfgStream);
 }
 
-cv::dnn::Net readNetFromDarknet(const std::vector<uchar>& bufferCfg, const std::vector<uchar>& bufferModel)
+Net readNetFromDarknet(const std::vector<uchar>& bufferCfg, const std::vector<uchar>& bufferModel)
 {
     const char* bufferCfgPtr = reinterpret_cast<const char*>(&bufferCfg[0]);
     const char* bufferModelPtr = bufferModel.empty() ? NULL :
@@ -258,5 +253,4 @@ cv::dnn::Net readNetFromDarknet(const std::vector<uchar>& bufferCfg, const std::
                               bufferModelPtr, bufferModel.size());
 }
 
-CV__DNN_INLINE_NS_END
 }} // namespace

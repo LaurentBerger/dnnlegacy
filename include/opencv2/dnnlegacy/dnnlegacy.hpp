@@ -52,6 +52,15 @@
 namespace cv {
 namespace dnnlegacy {
 
+    template <typename Importer, typename ... Args>
+    cv::dnn::Net readNet(Args&& ... args)
+    {
+        cv::dnn::Net net;
+        Importer importer(net, std::forward<Args>(args)...);
+        return net;
+    }
+
+
     /** @brief Reads a network model stored in <a href="https://pjreddie.com/darknet/">Darknet</a> model files.
     *  @param cfgFile      path to the .cfg file with text description of the network architecture.
     *  @param darknetModel path to the .weights file with learned network.
