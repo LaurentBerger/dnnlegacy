@@ -60,6 +60,7 @@ namespace dnnlegacy {
         return net;
     }
 
+    CV_EXPORTS_W cv::dnn::Net importOnnxWithFixedShape(const char* onnxFile, std::map<std::string, int> &valSubstitute);
 
     /** @brief Reads a network model stored in <a href="https://pjreddie.com/darknet/">Darknet</a> model files.
     *  @param cfgFile      path to the .cfg file with text description of the network architecture.
